@@ -27,7 +27,7 @@ groups:
     doc: The number of ViRMEN iterations for this session.
     required: false
   - name: session_duration
-    dtype: int
+    dtype: float
     doc: The duration of session in seconds.
     required: false
   - name: advance
@@ -146,7 +146,7 @@ groups:
     required: false
   datasets:
   - name: visual_color
-    dtype: int
+    dtype: uint8
     shape:
     - null
     doc: no description

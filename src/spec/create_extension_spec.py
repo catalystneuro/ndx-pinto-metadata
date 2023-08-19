@@ -66,7 +66,7 @@ def main():
     lab_meta_data_extension.add_attribute(
         name="session_duration",
         doc="The duration of session in seconds.",
-        dtype="int",
+        dtype="float",
         required=False,
     )
 
@@ -142,7 +142,7 @@ def main():
     stimulus_protocol_extension.add_dataset(
         name="visual_color",
         doc="no description",  # TODO confirm
-        dtype="int",
+        dtype="uint8",
         shape=(None,),
         quantity="?",
     )

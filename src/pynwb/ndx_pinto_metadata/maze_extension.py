@@ -14,7 +14,6 @@ class MazeExtension(DynamicTable):
     """
     Table for storing maze information
     """
-
     mazes_attributes = [
         "NoiseDensity",
         "antiFraction",
@@ -42,8 +41,6 @@ class MazeExtension(DynamicTable):
         "maxBias",
         "maxTrialDuration",
         "nextMaze",
-        "nTrialRange",
-        "nTrialRangeEasy",
         "numBlockTrials",
         "numSessions",
         "numTrials",
@@ -62,12 +59,6 @@ class MazeExtension(DynamicTable):
         "turnHint",
         "varDelayGain",
         "varSampleGain",
-        "warmupBias",
-        "warmupMaze",
-        "warmupMaxNTrials",
-        "warmupMotor",
-        "warmupNTrials",
-        "warmupPerform",
         "world",
     ]
 
@@ -76,11 +67,9 @@ class MazeExtension(DynamicTable):
             "name": attr,
             "description": "maze information",
             "required": False,
-            "index": False,
-            "table": False,
         }
         for attr in mazes_attributes
-    )
+
 
     @docval(
         dict(name="name", type=str, doc="name of this MazeExtension"),  # required
