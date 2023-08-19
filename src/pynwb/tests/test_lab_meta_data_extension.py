@@ -8,7 +8,6 @@ from pynwb.testing.mock.file import mock_NWBFile
 from ndx_pinto_metadata import (
     MazeExtension,
     LabMetaDataExtension,
-    StimulusParametersExtension,
     StimulusProtocolExtension,
 )
 
@@ -30,9 +29,6 @@ class TestLabMetaDataExtensionConstructor(TestCase):
             lStart=5,
             maxTrialDuration=180,
             turnHint=1,
-        )
-
-        cls.stimulus_parameters = dict(
             numTrials=80,
             numTrialsPerMin=2,
             criteriaNTrials=100,
@@ -74,23 +70,15 @@ class TestLabMetaDataExtensionConstructor(TestCase):
         remove_test_file(cls.nwbfile_path)
 
     def test_add_to_nwbfile(self):
-        # Add stimulus parameters (one row for each maze)
-        stimulus_parameters_extension = StimulusParametersExtension(
-            name="stimulus_parameters",
-            description="stimulus protocol parameters",
-        )
-        stimulus_parameters_extension.add_row(**self.stimulus_parameters)
-
-        # Create stimulus protocol with global settings and add table with protocol parameters
-        stimulus_protocol_extension = StimulusProtocolExtension(
-            name="stimulus_protocol",
-            stimulus_parameters=stimulus_parameters_extension,
-            **self.global_settings,
-        )
-
         # Add MazeExtension
         maze_extension = MazeExtension(name="mazes", description="maze information")
         maze_extension.add_row(**self.maze)
+
+        # Create stimulus protocol with global settings
+        stimulus_protocol_extension = StimulusProtocolExtension(
+            name="stimulus_protocol",
+            **self.global_settings,
+        )
 
         # Create LabMetaData container
         lab_metadata_dict = dict(

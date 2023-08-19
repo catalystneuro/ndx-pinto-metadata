@@ -106,7 +106,7 @@ def main():
 
     stimulus_protocol_extension.add_attribute(
         name="stimulus_draw",
-        doc="The name of stimulus draw.",  # TODO confirm what "trialDraw" means
+        doc="The name of stimulus draw.",  # TODO confirm what "stimDraw" means
         dtype="text",
         required=False,
     )
@@ -216,18 +216,6 @@ def main():
             required=False,
         )
 
-    stimulus_parameters_extension = NWBGroupSpec(
-        doc="type for storing stimulus information",
-        neurodata_type_def="StimulusParametersExtension",
-        neurodata_type_inc="DynamicTable",
-    )
-
-    stimulus_protocol_extension.add_group(
-        name="stimulus_parameters",
-        neurodata_type_inc="StimulusParametersExtension",
-        doc="type for storing stimulus parameters",
-    )
-
     lab_meta_data_extension.add_group(
         name="stimulus_protocol",
         neurodata_type_inc="StimulusProtocolExtension",
@@ -249,7 +237,6 @@ def main():
     new_data_types = [
         lab_meta_data_extension,
         maze_extension,
-        stimulus_parameters_extension,
         stimulus_protocol_extension,
     ]
 

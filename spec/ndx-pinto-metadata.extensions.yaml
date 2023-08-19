@@ -48,9 +48,6 @@ groups:
 - neurodata_type_def: MazeExtension
   neurodata_type_inc: DynamicTable
   doc: type for storing maze information
-- neurodata_type_def: StimulusParametersExtension
-  neurodata_type_inc: DynamicTable
-  doc: type for storing stimulus information
 - neurodata_type_def: StimulusProtocolExtension
   neurodata_type_inc: LabMetaData
   doc: type for storing stimulus protocol metadata
@@ -178,7 +175,3 @@ groups:
     - null
     doc: no description
     quantity: '?'
-  groups:
-  - name: stimulus_parameters
-    neurodata_type_inc: StimulusParametersExtension
-    doc: type for storing stimulus parameters
