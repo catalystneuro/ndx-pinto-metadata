@@ -1,6 +1,5 @@
-from datetime import datetime
-
 import numpy as np
+from hdmf.common.table import DynamicTable
 from hdmf.testing import TestCase, remove_test_file
 from pynwb import NWBHDF5IO
 from pynwb.testing.mock.file import mock_NWBFile
@@ -8,8 +7,8 @@ from pynwb.testing.mock.file import mock_NWBFile
 from ndx_pinto_metadata import (
     MazeExtension,
     LabMetaDataExtension,
-    StimulusProtocolExtension,
 )
+
 
 class TestLabMetaDataExtensionConstructor(TestCase):
     @classmethod
@@ -32,35 +31,27 @@ class TestLabMetaDataExtensionConstructor(TestCase):
             numTrials=80,
             numTrialsPerMin=2,
             criteriaNTrials=100,
-            warmupNTrials=3,
-            warmupMaxNTrials=3,
             numSessions=1,
             performance=np.inf,
             maxBias=0.2,
-            warmupMaze=3,
-            warmupPerform=0.85,
-            warmupBias=0.1,
-            warmupMotor=0.75,
             easyBlock=np.nan,
             easyBlockNTrials=10,
             numBlockTrials=40,
             blockPerform=0.55,
-            nTrialRange=np.nan,
-            nTrialRangeEasy=np.nan,
             geoDistP=np.nan,
             geoDistPEasy=np.nan,
         )
 
         cls.global_settings = dict(
-            num_mazes_in_protocol=11,
-            trial_draw="EradeCapped",
-            stimulus_draw="LeftOneOnly",
-            visual_color=[0, 0, 1],
-            memory_color=[0.5, 0.5, 0.0],
-            is_princeton_implementation=1,
-            cue_min_separation=12,
-            num_repeat_trials=2,
-            trial_repeat_probability=0.05,
+            cueMinSeparation=12,
+            totalRepeatProbability=0.05,
+            numRepeatTrials=2,
+            visualcolor=np.array([0, 0, 1]),
+            memorycolor=np.array([0, 0, 1]),
+            princetonImplementation=1,
+            numMazesInProtocol=11,
+            trialDraw="EradeCapped",
+            stimDraw="LeftOneOnly",
         )
 
         cls.nwbfile_path = "test.nwb"
@@ -75,17 +66,25 @@ class TestLabMetaDataExtensionConstructor(TestCase):
         maze_extension.add_row(**self.maze)
 
         # Create stimulus protocol with global settings
-        stimulus_protocol_extension = StimulusProtocolExtension(
+        stimulus_protocol = DynamicTable(
             name="stimulus_protocol",
-            **self.global_settings,
+            description="Holds information about the stimulus protocol.",
         )
+
+        for name in list(self.global_settings.keys()):
+            stimulus_protocol.add_column(
+                name=name,
+                description="stimulus protocol parameter.",
+            )
+
+        stimulus_protocol.add_row(**self.global_settings)
 
         # Create LabMetaData container
         lab_metadata_dict = dict(
             name="LabMetaData",
             experiment_name="test",
             mazes=maze_extension,
-            stimulus_protocol=stimulus_protocol_extension,
+            stimulus_protocol=stimulus_protocol,
         )
 
         # Populate metadata extension
@@ -97,7 +96,7 @@ class TestLabMetaDataExtensionConstructor(TestCase):
         nwbfile_lab_metadata = self.nwbfile.lab_meta_data["LabMetaData"]
         self.assertContainerEqual(nwbfile_lab_metadata.mazes, maze_extension)
         self.assertContainerEqual(
-            nwbfile_lab_metadata.stimulus_protocol, stimulus_protocol_extension
+            nwbfile_lab_metadata.stimulus_protocol, stimulus_protocol
         )
 
     def test_roundtrip(self):

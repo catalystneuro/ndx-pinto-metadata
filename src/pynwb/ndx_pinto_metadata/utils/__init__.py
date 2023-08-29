@@ -1,1 +1,1 @@
-from .mat_utils import convert_mat_file_to_dict, create_indexed_array
+from .array_utils import create_indexed_array

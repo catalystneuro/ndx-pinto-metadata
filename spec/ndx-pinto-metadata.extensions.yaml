@@ -6,6 +6,10 @@ groups:
   - name: experiment_name
     dtype: text
     doc: The name of experiment run in ViRMEN.
+  - name: experiment_code
+    dtype: text
+    doc: The name of the code of experiment run in ViRMEN.
+    required: false
   - name: session_index
     dtype: int
     doc: The index of session.
@@ -39,139 +43,13 @@ groups:
     doc: ViRMEN configuration parameter.
     required: false
   groups:
-  - name: stimulus_protocol
-    neurodata_type_inc: StimulusProtocolExtension
-    doc: type for storing stimulus protocol
   - name: mazes
     neurodata_type_inc: MazeExtension
     doc: type for storing maze information
+  - name: stimulus_protocol
+    neurodata_type_inc: DynamicTable
+    doc: type for storing stimulus protocol information that varies from task to task
+    quantity: '?'
 - neurodata_type_def: MazeExtension
   neurodata_type_inc: DynamicTable
   doc: type for storing maze information
-- neurodata_type_def: StimulusProtocolExtension
-  neurodata_type_inc: LabMetaData
-  doc: type for storing stimulus protocol metadata
-  attributes:
-  - name: num_mazes_in_protocol
-    dtype: int
-    doc: The number of mazes for this stimulus protocol.
-    required: false
-  - name: trial_draw
-    dtype: text
-    doc: The name of trial draw.
-    required: false
-  - name: stimulus_draw
-    dtype: text
-    doc: The name of stimulus draw.
-    required: false
-  - name: cue_shown
-    dtype: int
-    doc: Indicates whether cue was shown for this stimulus protocol.
-    required: false
-  - name: cue_min_separation
-    dtype: int
-    doc: The minimum time in ms between the cues.
-    required: false
-  - name: trial_repeat_probability
-    dtype: float
-    doc: The probability of repeated trials.
-    required: false
-  - name: num_repeat_trials
-    dtype: int
-    doc: The number of repeated trials.
-    required: false
-  - name: is_princeton_implementation
-    dtype: int
-    doc: Indicates whether uses Princeton implementation.
-    required: false
-  - name: hTrim
-    dtype: float
-    doc: no description
-    required: false
-  - name: hWidth
-    dtype: int
-    doc: Stimulus protocol parameter.
-    required: false
-  - name: wHeight
-    dtype: int
-    doc: Stimulus protocol parameter.
-    required: false
-  - name: mHeight
-    dtype: int
-    doc: Stimulus protocol parameter.
-    required: false
-  - name: towerHeight
-    dtype: int
-    doc: Stimulus protocol parameter.
-    required: false
-  - name: R
-    dtype: int
-    doc: Stimulus protocol parameter.
-    required: false
-  - name: armLength
-    dtype: int
-    doc: Stimulus protocol parameter.
-    required: false
-  - name: rzLength
-    dtype: int
-    doc: Stimulus protocol parameter.
-    required: false
-  - name: trialEndPauseDuration
-    dtype: int
-    doc: Stimulus protocol parameter.
-    required: false
-  - name: interTrialCorrectDuration
-    dtype: int
-    doc: Stimulus protocol parameter.
-    required: false
-  - name: interTrialWrongDuration
-    dtype: int
-    doc: Stimulus protocol parameter.
-    required: false
-  - name: targetNumTrials
-    dtype: int
-    doc: Stimulus protocol parameter.
-    required: false
-  - name: panSessionTrials
-    dtype: int
-    doc: Stimulus protocol parameter.
-    required: false
-  - name: rewardFraction
-    dtype: int
-    doc: Stimulus protocol parameter.
-    required: false
-  - name: antiFraction
-    dtype: int
-    doc: Stimulus protocol parameter.
-    required: false
-  datasets:
-  - name: visual_color
-    dtype: uint8
-    shape:
-    - null
-    doc: no description
-    quantity: '?'
-  - name: memory_color
-    dtype: float
-    shape:
-    - null
-    doc: no description
-    quantity: '?'
-  - name: mask_color
-    dtype: float
-    shape:
-    - null
-    doc: no description
-    quantity: '?'
-  - name: color1
-    dtype: uint8
-    shape:
-    - null
-    doc: no description
-    quantity: '?'
-  - name: color2
-    dtype: uint8
-    shape:
-    - null
-    doc: no description
-    quantity: '?'

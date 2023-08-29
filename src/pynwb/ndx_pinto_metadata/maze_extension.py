@@ -14,6 +14,7 @@ class MazeExtension(DynamicTable):
     """
     Table for storing maze information
     """
+
     mazes_attributes = [
         "NoiseDensity",
         "antiFraction",
@@ -69,7 +70,7 @@ class MazeExtension(DynamicTable):
             "required": False,
         }
         for attr in mazes_attributes
-
+    )
 
     @docval(
         dict(name="name", type=str, doc="name of this MazeExtension"),  # required
