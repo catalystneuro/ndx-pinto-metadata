@@ -8,7 +8,7 @@ def main():
     ns_builder = NWBNamespaceBuilder(
         doc="type for storing metadata for Pinto lab",
         name="ndx-pinto-metadata",
-        version="0.1.0",
+        version="0.1.1",
         author=["Szonja Weigl", "Ben Dichter"],
         contact=["ben.dichter@catalystneuro.com"],
     )
@@ -79,14 +79,14 @@ def main():
 
     lab_meta_data_extension.add_attribute(
         name="advance",
-        doc="ViRMEN configuration parameter.",
+        doc="Defines whether the overall performance of the animal in the current session has met learning criteria to advance to the next maze.",
         dtype="int",
         required=False,
     )
 
     lab_meta_data_extension.add_attribute(
-        name="squal",
-        doc="ViRMEN configuration parameter.",
+        name="surface_quality",
+        doc="Defines the surface quality of the treadmill. Metric for the quality of the displacement readings.",
         dtype="float",
         required=False,
     )

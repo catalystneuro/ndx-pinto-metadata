@@ -36,11 +36,13 @@ groups:
     required: false
   - name: advance
     dtype: int
-    doc: ViRMEN configuration parameter.
+    doc: Defines whether the overall performance of the animal in the current session
+      has met learning criteria to advance to the next maze.
     required: false
-  - name: squal
+  - name: surface_quality
     dtype: float
-    doc: ViRMEN configuration parameter.
+    doc: Defines the surface quality of the treadmill. Metric for the quality of the
+      displacement readings.
     required: false
   groups:
   - name: mazes
