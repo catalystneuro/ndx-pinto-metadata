@@ -8,13 +8,14 @@ def main():
     ns_builder = NWBNamespaceBuilder(
         doc="type for storing metadata for Pinto lab",
         name="ndx-pinto-metadata",
-        version="0.1.1",
+        version="0.1.2",
         author=["Szonja Weigl", "Ben Dichter"],
         contact=["ben.dichter@catalystneuro.com"],
     )
 
     ns_builder.include_type("LabMetaData", namespace="core")
     ns_builder.include_type("DynamicTable", namespace="core")
+    ns_builder.include_type("Subject", namespace="core")
 
     lab_meta_data_extension = NWBGroupSpec(
         doc="type for storing metadata for Pinto lab",
@@ -110,9 +111,28 @@ def main():
         quantity="?",
     )
 
+    subject_extension = NWBGroupSpec(
+        doc="Extended subject tpye for metadata specific to the Pinto lab.",
+        neurodata_type_def="SubjectExtension",
+        neurodata_type_inc="Subject",
+    )
+    subject_extension.add_attribute(
+        name="zygosity",
+        doc="The zygosity of the subject.",
+        dtype="text",
+        required=False,
+    )
+    subject_extension.add_attribute(
+        name="ear_tag_id",
+        doc="The text identification of the ear tag.",
+        dtype="text",
+        required=False,
+    )
+
     new_data_types = [
         lab_meta_data_extension,
         maze_extension,
+        subject_extension,
     ]
 
     # export the spec to yaml files in the spec folder

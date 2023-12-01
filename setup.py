@@ -22,7 +22,7 @@ except Exception:
 
 setup_args = {
     "name": "ndx-pinto-metadata",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "The NWB extension for storing ViRMEN experimental metadata for the Pinto lab.",
     "long_description": readme,
     "long_description_content_type": readme_type,
