@@ -120,11 +120,13 @@ def main():
         name="zygosity",
         doc="The zygosity of the subject.",
         dtype="text",
+        required=False,
     )
     subject_extension.add_attribute(
         name="ear_tag_id",
         doc="The text identification of the ear tag.",
         dtype="text",
+        required=False,
     )
 
     new_data_types = [

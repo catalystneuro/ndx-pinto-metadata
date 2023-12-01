@@ -62,6 +62,8 @@ groups:
   - name: zygosity
     dtype: text
     doc: The zygosity of the subject.
+    required: false
   - name: ear_tag_id
     dtype: text
     doc: The text identification of the ear tag.
+    required: false
