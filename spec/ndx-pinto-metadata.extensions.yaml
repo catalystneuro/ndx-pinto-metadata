@@ -55,3 +55,13 @@ groups:
 - neurodata_type_def: MazeExtension
   neurodata_type_inc: DynamicTable
   doc: type for storing maze information
+- neurodata_type_def: SubjectExtension
+  neurodata_type_inc: Subject
+  doc: type for subject metadata for Pinto lab
+  attributes:
+  - name: zygosity
+    dtype: text
+    doc: The zygosity of the subject.
+  - name: ear_tag_id
+    dtype: text
+    doc: The text identification of the ear tag.
