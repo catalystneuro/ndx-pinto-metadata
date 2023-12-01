@@ -112,7 +112,7 @@ def main():
     )
 
     subject_extension = NWBGroupSpec(
-        doc="type for subject metadata for Pinto lab",
+        doc="Extended subject tpye for metadata specific to the Pinto lab.",
         neurodata_type_def="SubjectExtension",
         neurodata_type_inc="Subject",
     )
